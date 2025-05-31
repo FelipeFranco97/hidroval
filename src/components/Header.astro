@@ -1,0 +1,160 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+import { Menu } from "@lucide/astro";
+---
+
+<header>
+  <nav>
+    <picture>
+      <source
+        srcset="/HIDROVAL SAS NEGRO.png"
+        type="image/png"
+        media="(max-width:100px)"
+      />
+      <img
+        src="/HIDROVAL SAS NEGRO.png"
+        alt={SITE_TITLE}
+        style="width: 150px; height: auto;"
+      />
+    </picture>
+    <div class="internal-links">
+      <HeaderLink href="/">Inicio</HeaderLink>
+      <HeaderLink href="/services">Servicios Integrales</HeaderLink>
+      <HeaderLink href="/products">Portafolio de Productos</HeaderLink>
+      <HeaderLink href="/proyectos">Nuestros Proyectos</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+    </div>
+
+    <button class="mobile-menu-button" aria-label="Menu">
+      <Menu size={24} />
+    </button>
+  </nav>
+</header>
+<style>
+  header {
+    margin: 0;
+    padding: 0 3em;
+    background: white;
+    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    position: relative;
+    height: 100px;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav a {
+    padding: 1em 0.5em;
+    color: var(--black);
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+  }
+  nav a.active {
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+  }
+
+  .internal-links {
+    display: flex;
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    header {
+      height: auto;
+    }
+
+    nav a.active {
+      border-bottom-width: 1px;
+    }
+
+    .internal-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(var(--black), 5%);
+      border-radius: 0.5rem;
+      z-index: 1000;
+      height: 100vh;
+    }
+    .internal-links.show-mobile-menu {
+      display: flex;
+      animation: slideLeft 0.3s forwards;
+    }
+    .internal-links.hiding-mobile-menu {
+      display: flex;
+      animation: slideRight 0.3s forwards;
+    }
+    .mobile-menu-button {
+      display: block;
+    }
+
+    @keyframes slideLeft {
+      from {
+        right: -50vw;
+      }
+      to {
+        right: 0;
+      }
+    }
+
+    @keyframes slideRight {
+      from {
+        right: 0;
+      }
+      to {
+        right: -50vw;
+      }
+    }
+  }
+</style>
+
+<script>
+  const menuButton = document.querySelector(".mobile-menu-button");
+  const menu = document.querySelector(".internal-links");
+
+  menuButton?.addEventListener("click", () => {
+    if (menu?.classList.contains("show-mobile-menu")) {
+      menu.classList.add("hiding-mobile-menu");
+      menu.classList.remove("show-mobile-menu");
+
+      setTimeout(() => {
+        menu.classList.remove("hiding-mobile-menu");
+      }, 300);
+    } else {
+      menu?.classList.add("show-mobile-menu");
+      menu?.classList.remove("hiding-mobile-menu");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !menu?.contains(e.target as Node) &&
+      !(e.target as Element).closest(".mobile-menu-button")
+    ) {
+      if (menu?.classList.contains("show-mobile-menu")) {
+        menu.classList.add("hiding-mobile-menu");
+        menu.classList.remove("show-mobile-menu");
+        setTimeout(() => {
+          menu.classList.remove("hiding-mobile-menu");
+        }, 300);
+      }
+    }
+  });
+</script>

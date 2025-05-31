@@ -1,0 +1,81 @@
+<section class="companies-section">
+  <div class="container">
+    <h2>Nuestros Clientes</h2>
+    <p>
+      Somos aliados estratégicos de empresas y entidades que buscan soluciones
+      hidráulicas confiables y eficientes. Estos son algunos de los clientes que
+      han depositado su confianza en nuestra experiencia y compromiso.
+    </p>
+    <div class="companies-list">
+      <img
+        src="/aassa.webp"
+        alt="Logo de AAS S.A. Servicios de Acueducto y Alcantarillado"
+        loading="lazy"
+      />
+      <img
+        src="/aqualia.webp"
+        alt="Logo de Aqualia Colombia, empresa de gestión del agua"
+        loading="lazy"
+      />
+      <img
+        src="/eeppa.webp"
+        alt="Logo de Empresa de Servicios Públicos de Andes S.A. E.S.P."
+        loading="lazy"
+      />
+      <img
+        src="/emcartago.webp"
+        alt="Logo de Emcartago S.A. E.S.P., empresa de servicios públicos de Cartago"
+        loading="lazy"
+      />
+      <img
+        src="/paecia.webp"
+        alt="Logo de Paecía S.A. E.S.P., empresa de acueducto y alcantarillado"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .companies-section {
+    width: 100%;
+    margin: 5rem auto;
+  }
+
+  .companies-section h2 {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .companies-section p {
+    font-size: clamp(0.98rem, 1.7vw, 1.13rem);
+    margin-bottom: 2rem;
+  }
+
+  .companies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .companies-list img {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    height: 120px;
+    object-fit: contain;
+    background: #f4f6fa;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 24px rgba(0, 47, 167, 0.18);
+    transition: box-shadow 0.2s;
+    margin: 0 auto;
+  }
+
+  .companies-list img:hover {
+    box-shadow: 0 8px 32px rgba(0, 87, 184, 0.25);
+  transform: translateY(-4px) scale(1.04);
+  }
+</style>

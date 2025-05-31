@@ -1,0 +1,60 @@
+---
+const today = new Date();
+---
+
+<footer>
+  &copy; {today.getFullYear()} Hidroval S.A.S. Todos los derechos reservados.
+  <div class="social-links">
+    <a href="https://www.instagram.com/hidroval_sas" target="_blank">
+      <span class="sr-only">Siguenos en Instagram</span>
+      <img
+        src="/icons8-instagram.svg"
+        width="32"
+        height="32"
+        alt="Instagram icon"
+      />
+    </a>
+    <a
+      href="https://wa.me/573002460276?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios"
+      target="_blank"
+    >
+      <span class="sr-only">Contáctanos por WhatsApp</span>
+      <img
+        src="/icons8-whatsapp.svg"
+        width="32"
+        height="32"
+        alt="WhatsApp icon"
+      />
+    </a>
+    <a href="mailto:hidrovaleu@gmail.com">
+      <span class="sr-only">Envíanos un email</span>
+      <img
+        src="/email-svgrepo-com.svg"
+        width="32"
+        height="32"
+        alt="Email icon"
+      />
+    </a>
+  </div>
+</footer>
+<style>
+  footer {
+    padding: 2em 1em 2em 1em;
+    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    color: rgb(var(--gray));
+    text-align: center;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: rgb(var(--gray));
+  }
+  .social-links a:hover {
+    color: rgb(var(--gray-dark));
+  }
+</style>

@@ -1,0 +1,538 @@
+---
+import { productos } from "../../data/products.js";
+import { SlidersHorizontal } from '@lucide/astro';
+---
+
+<section class="productos-layout" id="productos-section">
+  <aside class="productos-sidebar">
+    <div class="filtro-busqueda">
+      <input
+        id="busqueda"
+        type="text"
+        placeholder="Buscar producto..."
+        class="input-busqueda"
+      />
+    </div>
+    <div class="filtro-titulo">Filtrar por tipo</div>
+    <div class="filtro-lista">
+      <label
+        ><input
+          type="checkbox"
+          value="Macromedidores Siemens"
+          class="filtro-tipo"
+        /> Macromedidores Siemens</label
+      >
+      <label
+        ><input type="checkbox" value="Hierro Dúctil" class="filtro-tipo" /> Hierro
+        Dúctil</label
+      >
+      <label
+        ><input type="checkbox" value="Acero al Carbón" class="filtro-tipo" /> Acero
+        al Carbón</label
+      >
+      <label
+        ><input type="checkbox" value="Acero Inoxidable" class="filtro-tipo" /> Acero
+        Inoxidable</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          value="Fabricación Especial"
+          class="filtro-tipo"
+        /> Fabricación Especial</label
+      >
+      <label
+        ><input type="checkbox" value="Polietileno" class="filtro-tipo" /> Polietileno</label
+      >
+    </div>
+  </aside>
+  <div class="productos-toolbar-mobile">
+  <input
+    id="busqueda-mobile"
+    type="text"
+    placeholder="Buscar producto..."
+    class="input-busqueda"
+  />
+  <button class="filtro-toggle" id="filtro-toggle" aria-label="Mostrar filtros">
+    <SlidersHorizontal size={24} />
+  </button>
+</div>
+<div class="filtros-mobile" id="filtros-mobile">
+  <div class="filtro-titulo">Filtrar por tipo</div>
+  <div class="filtro-lista">
+    <label><input type="checkbox" value="Macromedidores Siemens" class="filtro-tipo" /> Macromedidores Siemens</label>
+    <label><input type="checkbox" value="Hierro Dúctil" class="filtro-tipo" /> Hierro Dúctil</label>
+    <label><input type="checkbox" value="Acero al Carbón" class="filtro-tipo" /> Acero al Carbón</label>
+    <label><input type="checkbox" value="Acero Inoxidable" class="filtro-tipo" /> Acero Inoxidable</label>
+    <label><input type="checkbox" value="Fabricación Especial" class="filtro-tipo" /> Fabricación Especial</label>
+    <label><input type="checkbox" value="Polietileno" class="filtro-tipo" /> Polietileno</label>
+  </div>
+</div>
+  <div class="productos-main">
+    <div id="productos-info" class="productos-info"></div>
+    <div class="productos-grid" id="productos-grid">
+      {
+        productos.map((producto) => (
+          <div
+            class="producto-card"
+            data-nombre={producto.nombre.toLowerCase()}
+            data-tipo={producto.tipo}
+          >
+            <img 
+              src={producto.img} 
+              alt={producto.nombre} 
+              loading="lazy"
+              width="239"
+              height="239"
+            />
+            <div class="producto-card-content">
+              <h3>{producto.nombre}</h3>
+            </div>
+            <span class="producto-tipo">{producto.tipo}</span>
+          </div>
+        ))
+      }
+    </div>
+    <div class="paginacion" id="paginacion"></div>
+    <div id="no-result" class="no-result" style="display: none;">
+      <img 
+        src="/faq2-without-bg.png" 
+        alt="Sin resultados" 
+        loading="lazy"
+        width="180"
+        height="180"
+      />
+      <p>No se encontraron productos.</p>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .productos-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    width: 100%;
+    margin: 3rem auto;
+  }
+
+  .productos-sidebar {
+    width: 260px;
+    min-width: 200px;
+    background: #f6f8fa;
+    border-radius: 1rem;
+    padding: 2rem 1.2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .filtro-busqueda {
+    width: 100%;
+  }
+
+  .input-busqueda {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .input-busqueda:focus {
+    border-color: #0057b8;
+  }
+
+  .filtro-titulo {
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+    font-size: 1.08rem;
+    color: #222;
+  }
+
+  .filtro-lista label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #333;
+  }
+  .filtro-lista input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+
+  .productos-info {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    grid-auto-rows: auto;
+  }
+
+  .producto-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-between;
+  align-items: flex-start;
+  height: auto;
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s;
+      
+  }
+
+  .producto-card-content {
+  width: 100%;
+}
+
+
+  .producto-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  .producto-card img {
+     width: 239.23px;
+  height: 239.23px;
+  object-fit: cover;
+  border-radius: 0.7rem;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #f4f6fa;
+  }
+
+  .producto-card h3 {
+    font-size: 1.1rem;
+    text-align: left;
+    margin: 0;
+  }
+
+  .producto-tipo {
+    font-size: 0.98rem;
+    color: #555;
+    margin-bottom: 0.2rem;
+    text-transform: capitalize;
+    margin-top: auto;
+  }
+
+  .productos-main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .no-result {
+    min-height: 300px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 3rem 0;
+  }
+  .no-result img {
+    width: 180px;
+    margin-bottom: 1.2rem;
+    opacity: 0.7;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paginacion {
+    display: flex;
+    gap: 0.1rem;
+    justify-content: center;
+    margin: 2rem 0 0 0;
+    flex-wrap: wrap;
+  }
+
+  .paginacion-btn {
+   background: none;
+  border: none;
+  color: #0057b8;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, font-weight 0.15s;
+  box-shadow: none;
+  outline: none;
+  text-align: center;
+  margin: 0;
+  appearance: none;
+  display: inline-block;
+  }
+
+  .paginacion-btn.activa {
+   background: #eaf1fb;
+  color: #003f7d;
+  font-weight: bold;
+  text-decoration: underline;
+  }
+
+  .paginacion-btn:hover:not(.activa){
+   background: #f2f6fa;
+  color: #003f7d;
+  }
+
+  .productos-toolbar-mobile,
+.filtros-mobile {
+  display: none;
+}
+
+  @media (max-width: 768px) {
+    .productos-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .productos-sidebar {
+    display: none;
+  }
+  .productos-toolbar-mobile {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.2rem;
+    padding: 0 0.5rem;
+  }
+  #busqueda-mobile {
+    flex: 1;
+    min-width: 0;
+  }
+  .filtro-toggle {
+    background: #0057b8;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .filtro-toggle:hover {
+    background: #003f7d;
+  }
+  .filtros-mobile {
+    display: none;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 10;
+  }
+  .filtros-mobile.abierto {
+    display: block;
+    animation: fadeIn 0.2s;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  }
+</style>
+
+<script>
+  const inputBusqueda = document.getElementById("busqueda") as HTMLInputElement | null;
+  const checkboxes = document.querySelectorAll<HTMLInputElement>(".filtro-tipo");
+  const cards = document.querySelectorAll<HTMLDivElement>(".producto-card");
+  const noResult = document.getElementById("no-result");
+  const paginacion = document.getElementById("paginacion");
+  const info = document.getElementById("productos-info");
+
+  let paginaActual = 1;
+  let indicesVisibles: number[] = [];
+
+  function esMobile() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
+
+  function getColumnCount() {
+    const grid = document.getElementById("productos-grid");
+    if (!grid) return 1;
+    const style = window.getComputedStyle(grid);
+    const templateColumns = style.getPropertyValue("grid-template-columns");
+    return templateColumns.split(" ").length;
+  }
+
+  function actualizarInfoProductos(pagina: number, total: number, porPagina: number) {
+    if (!info) return;
+    if (total === 0) {
+      info.textContent = "No hay productos para mostrar.";
+      return;
+    }
+    if (esMobile()) {
+      info.textContent = `Mostrando ${total} productos`;
+    } else {
+      const totalPaginas = Math.ceil(total / porPagina);
+      const inicio = (pagina - 1) * porPagina;
+      const fin = Math.min(pagina * porPagina, total);
+      const cantidadMostrada = fin - inicio;
+      info.textContent = `Página ${pagina} de ${totalPaginas} — Mostrando ${cantidadMostrada} productos de ${total}`;
+    }
+  }
+
+  function filtrarProductos() {
+    if (!inputBusqueda) return;
+    const texto = inputBusqueda.value
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "");
+    const tiposSeleccionados = Array.from(checkboxes)
+      .filter((cb) => cb.checked)
+      .map((cb) => cb.value);
+
+    indicesVisibles = [];
+    cards.forEach((card, idx) => {
+      const nombre = (card.dataset.nombre ?? "")
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "");
+      const tipo = card.dataset.tipo ?? "";
+      const coincideBusqueda = nombre.includes(texto);
+      const coincideFiltro =
+        tiposSeleccionados.length === 0 || tiposSeleccionados.includes(tipo);
+
+      const mostrar = coincideBusqueda && coincideFiltro;
+      card.style.display = mostrar ? "" : "none";
+      if (mostrar) indicesVisibles.push(idx);
+    });
+
+    if (noResult) {
+      noResult.style.display = indicesVisibles.length === 0 ? "flex" : "none";
+      const grid = document.getElementById("productos-grid");
+      if (grid)
+        grid.style.display = indicesVisibles.length === 0 ? "none" : "grid";
+    }
+
+    paginaActual = 1;
+    if (esMobile()) {
+      mostrarTodosProductos();
+    } else {
+      mostrarPagina(paginaActual);
+    }
+  }
+
+  function mostrarTodosProductos() {
+    cards.forEach((card, idx) => {
+      card.style.display = indicesVisibles.includes(idx) ? "" : "none";
+    });
+    if (paginacion) paginacion.innerHTML = ""; // Oculta la paginación en móvil
+    actualizarInfoProductos(paginaActual, indicesVisibles.length, indicesVisibles.length);
+  }
+
+  function mostrarPagina(pagina: number, hacerScroll: boolean = false) {
+    const columnas = getColumnCount();
+    const POR_PAGINA = columnas * 3;
+    const total = indicesVisibles.length;
+    const totalPaginas = Math.ceil(total / POR_PAGINA);
+
+    if (pagina < 1) pagina = 1;
+    if (pagina > totalPaginas) pagina = totalPaginas;
+
+    actualizarInfoProductos(pagina, total, POR_PAGINA);
+
+    cards.forEach(card => {
+      card.style.display = "none";
+    });
+
+    const inicio = (pagina - 1) * POR_PAGINA;
+    const fin = pagina * POR_PAGINA;
+    indicesVisibles.slice(inicio, fin).forEach(idx => {
+      cards[idx].style.display = "";
+    });
+
+    if (hacerScroll) {
+      const grid = document.getElementById("productos-section");
+      if (grid) {
+        grid.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+    }
+
+    if (paginacion) {
+      if (totalPaginas <= 1) {
+        paginacion.innerHTML = "";
+        return;
+      }
+      let html = "";
+      if (pagina > 1) {
+        html += `<button class="paginacion-btn" data-pag="${pagina - 1}">Anterior</button>`;
+      }
+      for (let i = 1; i <= totalPaginas; i++) {
+        html += `<button class="paginacion-btn${i === pagina ? " activa" : ""}" data-pag="${i}">${i}</button>`;
+      }
+      if (pagina < totalPaginas) {
+        html += `<button class="paginacion-btn" data-pag="${pagina + 1}">Siguiente</button>`;
+      }
+      paginacion.innerHTML = html;
+      paginacion.querySelectorAll(".paginacion-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const pag = Number((e.target as HTMLElement).dataset.pag);
+          paginaActual = pag;
+          mostrarPagina(paginaActual, true);
+        });
+      });
+    }
+  }
+
+  // --- Mobile toolbar y filtros ---
+  const filtroToggle = document.getElementById("filtro-toggle");
+  const filtrosMobile = document.getElementById("filtros-mobile");
+  const inputBusquedaMobile = document.getElementById("busqueda-mobile");
+
+  filtroToggle?.addEventListener("click", () => {
+    filtrosMobile?.classList.toggle("abierto");
+  });
+
+  inputBusquedaMobile?.addEventListener("input", (e) => {
+    const valor = (inputBusquedaMobile as HTMLInputElement).value;
+    const inputBusqueda = document.getElementById("busqueda") as HTMLInputElement | null;
+    if (inputBusqueda) inputBusqueda.value = valor;
+    filtrarProductos();
+  });
+
+  // --- Eventos ---
+  inputBusqueda?.addEventListener("input", filtrarProductos);
+  checkboxes.forEach((cb) => {
+    cb.addEventListener("change", function () {
+      if (this.checked) {
+        checkboxes.forEach((other) => {
+          if (other !== this) other.checked = false;
+        });
+      }
+      filtrarProductos();
+    });
+  });
+
+  // Inicialización
+  filtrarProductos();
+</script>

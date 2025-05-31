@@ -1,0 +1,96 @@
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Proyectos</h1>
+    <p>
+      Gracias a nuestra experiencia en estos productos y procesos, también te
+      ofrecemos un servicio profesional con personal capacitado y certificado
+      para el montaje, puesta en servicio de estaciones de macromedición,
+      regulación y bombeo, contribuyendo a la modernización y eficiencia de las
+      infraestructuras hidráulicas.
+    </p>
+  </div>
+
+  <div class="hero-img-container">
+    <img 
+      src="/services/termofusion.png" 
+      alt="Proyectos Hidroval" 
+      fetchpriority="high"
+    />
+  </div>
+</section>
+
+<style>
+    .hero-section {
+        display: flex;
+        height: calc(100vh - 170px);
+        gap: 3rem;
+    }
+
+    .hero-content,
+    .hero-img-container {
+        flex: 1;
+        height: 100%;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1rem, 5vw, 3rem);
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+        font-size: clamp(0.8rem, 2vw, 1.1rem);
+        line-height: 1.5;
+    }
+
+    .hero-img-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 0;
+    }
+
+    .hero-img-container img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    @media (max-width: 768px) {
+    .hero-section {
+      height: calc(100dvh - 120px);
+      flex-direction: column;
+    }
+
+    .hero-content {
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.5;
+    }
+
+    .hero-img-container img {
+      max-height: 40vh;
+      object-fit: contain;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+</style>

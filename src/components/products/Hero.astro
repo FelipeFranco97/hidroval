@@ -1,0 +1,128 @@
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Productos</h1>
+    <p>
+      Fabricamos todo tipo de accesorios en
+      <a
+        href="https://wa.me/573002460276?text=Hola,%20me%20gustaría%20saber%20sobre%20sus%20productos%20de%20hierro%20dúctil"
+        target="_blank"
+        rel="noopener"
+        class="hero-link"
+        aria-label="Consultar sobre productos de hierro dúctil">hierro dúctil</a
+      >,
+      <a
+        href="https://wa.me/573002460276?text=Hola,%20me%20gustaría%20saber%20sobre%20sus%20productos%20de%20acero%20al%20carbón"
+        target="_blank"
+        rel="noopener"
+        class="hero-link"
+        aria-label="Consultar sobre productos de acero al carbón">acero al carbón</a
+      > y
+      <a
+        href="https://wa.me/573002460276?text=Hola,%20me%20gustaría%20saber%20sobre%20sus%20productos%20de%20acero%20inoxidable"
+        target="_blank"
+        rel="noopener"
+        class="hero-link"
+        aria-label="Consultar sobre productos de acero inoxidable">acero inoxidable</a
+      >, adaptándonos a los más altos estándares del sector. Además,
+      desarrollamos
+      <a
+        href="https://wa.me/573002460276?text=Hola,%20me%20gustaría%20saber%20sobre%20sus%20productos%20de%20accesorios%20a%20la%20medida"
+        target="_blank"
+        rel="noopener"
+        class="hero-link">accesorios a la medida</a
+      >
+      para necesidades o proyectos especiales, brindando respuestas técnicas precisas
+      y confiables a cada desafío.
+    </p>
+  </div>
+
+  <div class="hero-img-container">
+    <img src="products-without-bg.png" alt="Portafolio de Productos Hidroval" fetchpriority="high" />
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    display: flex;
+    height: calc(100vh - 170px);
+  }
+
+  .hero-content,
+  .hero-img-container {
+    flex: 1;
+    height: 100%;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    line-height: 1.5;
+  }
+
+  .hero-link {
+    color: rgb(var(--gray-dark));
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-link:hover {
+    text-decoration: underline;
+  }
+
+  .hero-img-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+  }
+
+  .hero-img-container img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      height: calc(100dvh - 170px);
+      flex-direction: column;
+    }
+
+    .hero-content {
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.5;
+    }
+
+    .hero-img-container img {
+      max-height: 40vh;
+      object-fit: contain;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+</style>

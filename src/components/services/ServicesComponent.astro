@@ -1,0 +1,563 @@
+---
+import { X } from "@lucide/astro";
+
+const servicios = [
+  {
+    nombre: "Instalaciones Hidráulicas y Sanitarias",
+    img: "/inst_hid_san.webp",
+    desc: `
+      <strong>Instalaciones Hidráulicas:</strong> Diseño e instalación de sistemas de suministro de agua potable, asegurando seguridad y bienestar en cada edificación.
+      <br><br>
+      <strong>Instalaciones Sanitarias:</strong> Dimensionamiento y trazado de redes de desagüe, optimización de ductos y colectores, conexiones eficientes con redes públicas o privadas.
+    `,
+  },
+  {
+    nombre: "Alcantarillados",
+    img: "/alcantarillado.jpg",
+    desc: `
+      Diseño conforme a normativas vigentes, garantizando funcionamiento óptimo y duradero en cada proyecto.
+    `,
+  },
+  {
+    nombre: "Soldaduras en Campo",
+    img: "/sold_campo.webp",
+    desc: `
+      Soldadura especializada en accesorios de acero y hierro dúctil, con procedimientos certificados y control de calidad riguroso.<br>
+      <br>
+      Supervisión de 2 ingenieros (metalúrgico y civil), 3 soldadores calificados y certificados bajo perfil WPQ y WSP, American Pipe, Pead y personal auxiliar.
+    `,
+  },
+  {
+    nombre: "Inspección de Soldaduras",
+    img: "/insp_sold.webp",
+    desc: `
+      Experiencia comprobada en instalaciones y transiciones de redes de tubería y accesorios en American Pipe.
+    `,
+  },
+  {
+    nombre: "Cortes Especiales",
+    img: "/cortes_esp.webp",
+    desc: `
+      <strong>Corte con plasma:</strong> Herramientas especializadas para cortes precisos y eficientes, esenciales para aplicaciones industriales.<br>
+      <br>
+      <strong>Oxicorte especializado:</strong> Ideal para cortes en materiales de gran espesor. Tecnología y personal capacitado para resultados de alta calidad en tiempos óptimos.
+    `,
+  },
+  {
+    nombre: "Instalaciones de Redes American Pipe",
+    img: "/inst_redes_ame_pipe.webp",
+    desc: `
+      Verificación y calificación de procedimientos de soldadura, asegurando cumplimiento con normativas y calidad en cada unión.
+    `,
+  },
+  {
+    nombre: "Termofusiones para Tuberías de Polietileno",
+    img: "/termofusiones.webp",
+    desc: `
+      Unión segura y eficiente de tuberías de polietileno mediante termofusión de alta precisión.
+    `,
+  },
+  {
+    nombre: "Asesoría Técnica Integral",
+    img: "/asesoria.webp",
+    desc: `
+      Acompañamiento técnico en cada etapa del proyecto, asegurando funcionamiento óptimo y cumplimiento normativo.<br>
+      <br>
+      Nuestro equipo de profesionales con amplia experiencia en campo, diseño y consultoría garantiza soluciones eficientes y duraderas mediante control y seguimiento especializado.
+    `,
+  },
+];
+---
+
+<section class="services-section">
+  <div class="cards-container">
+    {
+      servicios.map((servicio, i) => (
+        <div class="service-card">
+          <div class="service-card-top">
+            <img src={servicio.img} alt={servicio.nombre} />
+          </div>
+          <div class="service-card-bottom">
+            <h4>{servicio.nombre}</h4>
+            <p class="service-desc">
+              {servicio.desc
+                .replace(/<[^>]+>/g, "")
+                .split(" ")
+                .slice(0, 22)
+                .join(" ")}
+              {servicio.desc.replace(/<[^>]+>/g, "").split(" ").length > 22
+                ? "..."
+                : ""}
+            </p>
+
+            <button class="more-btn" data-id={i}>
+              Saber más
+            </button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div id="modal-bg" class="modal-bg"></div>
+  <div id="modal" class="modal mfp-zoom-in">
+    <div class="mfp-with-anim modal-content">
+    
+    
+      <div class="modal-info">
+          <button class="modal-close" id="modal-close" aria-label="Cerrar">
+        <X size={32} />
+      </button>
+        <h4 id="modal-title"></h4>
+        <div id="modal-desc"></div>
+        <div class="modal-contact">
+          <span class="modal-contact-text"
+            >¿Estás interesado en este servicio?</span
+          >
+          <a
+            id="modal-whatsapp"
+            class="whatsapp-btn more-btn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+          >
+            ¡Escríbenos!
+          </a>
+        </div>
+      </div>
+        <img id="modal-img" src="" alt="" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 8rem;
+  }
+  .services-section h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1100px;
+    margin: 2rem auto 0 auto;
+  }
+  .service-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 420px;
+    height: 340px;
+    overflow: hidden;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+  }
+
+  .service-card-top {
+    width: 100%;
+    height: 40%;
+    flex: 0 0 40%;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    background: #f4f6fa;
+  }
+
+  .service-card-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 !important;
+    display: block;
+  }
+
+  .service-card-bottom {
+    height: 60%;
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 1rem 1rem 1rem;
+    gap: 0.7rem;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .service-card-bottom h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.08rem;
+    font-weight: bold;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+   font-size: 0.98rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  }
+
+  .more-btn {
+    background: var(--accent, #0057b8);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: auto;
+  }
+
+  .more-btn:hover {
+    background: var(--accent-dark, #003f7d);
+  }
+  .modal-bg {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 3000;
+    transition: opacity 0.3s;
+  }
+  .modal-bg.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: transparent;
+    z-index: 4000;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      opacity 0.3s,
+      transform 0.3s;
+  }
+  .modal.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: .5rem;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    max-width: 950px;
+    width: 95vw;
+    height: 75vh;
+    min-height: unset;  
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2rem;
+    animation: zoomIn 0.3s;
+  }
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .modal-content img {
+    width: 20vw;
+    min-width: 350px;f
+    max-width: 600px;
+    height: 100%;
+    max-height: 90vh;
+    object-fit: cover;
+    margin-bottom: 0;
+    display: block;
+  }
+  .modal-content h4 {
+    margin: 0.5rem 0 1rem 0;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .modal-content #modal-desc {
+    font-size: 1.05rem;
+    text-align: left;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1.2rem;
+  left: 1.2rem;
+  right: auto;
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: #888;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .modal-close:hover {
+    color: #0057b8;
+  }
+
+  .modal-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    max-height: 100%;
+    padding: 3rem 0 3rem 3rem;
+  }
+
+  .modal-info h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.6rem;
+    text-align: left;
+  }
+  .modal-info #modal-desc {
+    font-size: 1.18rem;
+    text-align: left;
+  }
+
+  .whatsapp-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #25d366;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1.1rem;
+    text-align: left;
+    transition: color 0.2s;
+  }
+  .whatsapp-btn:hover {
+    color: #128c7e;
+    text-decoration: underline;
+  }
+
+  .modal-contact {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+
+  .modal-contact-text {
+    font-size: 1.08rem;
+    color: #222;
+    font-weight: 500;
+  }
+
+  .whatsapp-btn.more-btn {
+    background: var(--accent, #0057b8);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .whatsapp-btn.more-btn:hover {
+    background: var(--accent-dark, #003f7d);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .services-section h3 {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+  }
+  .service-card-bottom h4 {
+    font-size: clamp(1.08rem, 4vw, 1.3rem);
+  }
+  .service-desc {
+    font-size: clamp(1rem, 3.5vw, 1.13rem);
+  }
+  .more-btn {
+    font-size: clamp(1rem, 3.5vw, 1.13rem);
+    padding: 0.7rem 1.7rem;
+  }
+  .modal-content {
+     position: relative;
+    flex-direction: column;
+    width: 90vw;
+    height: 99vh;
+    min-width: unset;
+    min-height: unset;
+    gap: 0;
+    padding: 0;
+  }
+  .modal-info {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    order: 2;
+  }
+  .modal-content img {
+    width: 100%;
+    min-width: 0;
+    max-width: 100vw;
+    height: 30vh;
+    max-height: 30vh;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+    margin: 0;
+    display: block;
+    order: 1;
+  }
+  .modal-info h4,
+  .modal-content h4 {
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.7rem;
+    text-align: left;
+    word-break: break-word;
+    font-weight: bold;
+  }
+  .modal-info #modal-desc,
+  .modal-content #modal-desc {
+    font-size: 1.05rem;
+  }
+  .modal-close {
+    position: fixed;
+  top: 1rem;
+  left: calc(4vw + 0.7rem);
+  font-size: 1.3rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  border: none;
+  padding: 0;
+  transition: background 0.2s, color 0.2s;
+  }
+  .modal-close:hover {
+    background: #0057b8;
+    color: #fff;
+  }
+}
+</style>
+
+<script type="module">
+  const servicios = [
+    {
+      nombre: "Instalaciones Hidráulicas y Sanitarias",
+      img: "/inst_hid_san.webp",
+      desc: `<strong>Instalaciones Hidráulicas:</strong> Diseño e instalación de sistemas de suministro de agua potable, asegurando seguridad y bienestar en cada edificación.<br><br><strong>Instalaciones Sanitarias:</strong> Dimensionamiento y trazado de redes de desagüe, optimización de ductos y colectores, conexiones eficientes con redes públicas o privadas.`,
+    },
+    {
+      nombre: "Alcantarillados",
+      img: "/alcantarillado.jpg",
+      desc: `Diseño conforme a normativas vigentes, garantizando funcionamiento óptimo y duradero en cada proyecto.`,
+    },
+    {
+      nombre: "Soldaduras en Campo",
+      img: "/sold_campo.webp",
+      desc: `Soldadura especializada en accesorios de acero y hierro dúctil, con procedimientos certificados y control de calidad riguroso.<br><br>Supervisión de 2 ingenieros (metalúrgico y civil), 3 soldadores calificados y certificados bajo perfil WPQ y WSP, American Pipe, Pead y personal auxiliar.`,
+    },
+    {
+      nombre: "Inspección de Soldaduras",
+      img: "/insp_sold.webp",
+      desc: `Experiencia comprobada en instalaciones y transiciones de redes de tubería y accesorios en American Pipe.`,
+    },
+    {
+      nombre: "Cortes Especiales",
+      img: "/cortes_esp.webp",
+      desc: `<strong>Corte con plasma:</strong> Herramientas especializadas para cortes precisos y eficientes, esenciales para aplicaciones industriales.<br><br><strong>Oxicorte especializado:</strong> Ideal para cortes en materiales de gran espesor. Tecnología y personal capacitado para resultados de alta calidad en tiempos óptimos.`,
+    },
+    {
+      nombre: "Instalaciones de Redes American Pipe",
+      img: "/inst_redes_ame_pipe.webp",
+      desc: `Verificación y calificación de procedimientos de soldadura, asegurando cumplimiento con normativas y calidad en cada unión.`,
+    },
+    {
+      nombre: "Termofusiones para Tuberías de Polietileno",
+      img: "/termofusiones.webp",
+      desc: `Unión segura y eficiente de tuberías de polietileno mediante termofusión de alta precisión.`,
+    },
+    {
+      nombre: "Asesoría Técnica Integral",
+      img: "/asesoria.webp",
+      desc: `Acompañamiento técnico en cada etapa del proyecto, asegurando funcionamiento óptimo y cumplimiento normativo.<br><br>Nuestro equipo de profesionales con amplia experiencia en campo, diseño y consultoría garantiza soluciones eficientes y duraderas mediante control y seguimiento especializado.`,
+    },
+  ];
+
+  document.querySelectorAll(".more-btn").forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      const s = servicios[i];
+      document.getElementById("modal-img").src = s.img;
+      document.getElementById("modal-img").alt = s.nombre;
+      document.getElementById("modal-title").textContent = s.nombre;
+      document.getElementById("modal-desc").innerHTML = s.desc;
+      document.getElementById("modal-whatsapp").href =
+        `https://wa.me/573002460276?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20el%20servicio%20de%20${encodeURIComponent(s.nombre)}`;
+      openModal();
+    });
+  });
+
+  document.getElementById("modal-bg").addEventListener("click", closeModal);
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+
+  function openModal() {
+    document.getElementById("modal-bg").classList.add("show");
+    document.getElementById("modal").classList.add("show");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeModal() {
+    document.getElementById("modal-bg").classList.remove("show");
+    document.getElementById("modal").classList.remove("show");
+    document.body.classList.remove("modal-open");
+  }
+</script>

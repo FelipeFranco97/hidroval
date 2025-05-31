@@ -1,0 +1,73 @@
+<section class="cotizacion-section" id="cotizacion-section">
+  <div class="cotizacion-banner">
+    <a
+      href="https://wa.me/573002460276?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20macromedidores%20de%20Siemens"
+      target="_blank"
+    >
+      <img src="/cotizacion.jpg" alt="Cotización especial" />
+    </a>
+  </div>
+
+  <p class="cotizacion-desc">
+    Somos representantes de la marca <strong>Siemens</strong> y ofrecemos soluciones
+    de calidad respaldadas por una de las empresas líderes en tecnología e innovación.
+    ¿Te interesa saber más?
+    <a
+      href="https://wa.me/573002460276?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20macromedidores%20de%20Siemens"
+      target="_blank"
+      class="cotizacion-link"
+    >
+      ¡Escríbenos!
+    </a>
+  </p>
+</section>
+
+<style>
+  .cotizacion-section {
+    width: 100%;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .cotizacion-desc {
+    flex: 1;
+  }
+
+  .cotizacion-banner {
+    width: 70%;
+    display: flex;
+  }
+  .cotizacion-banner img {
+    width: 100%;
+    margin: auto;
+    display: block;
+    border-radius: 0.5rem;
+    object-fit: cover;
+  }
+
+  .cotizacion-link {
+    color: var(--accent, #0057b8);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .cotizacion-link:hover {
+    color: var(--accent-dark, #003f7d);
+  }
+
+  @media (max-width: 768px) {
+    .cotizacion-section {
+      flex-direction: column-reverse;
+      margin: 5rem auto;
+    }
+    .cotizacion-banner {
+      width: 100%;
+    }
+    .cotizacion-desc {
+      margin-top: 1rem;
+    }
+  }
+</style>

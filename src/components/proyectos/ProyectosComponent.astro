@@ -1,0 +1,88 @@
+---
+import { projects } from "../../data/projects";
+---
+
+<section class="container">
+  {
+    projects.map((project) => (
+      <div class="project">
+        <h2>{project.nombre}</h2>
+        <p>{project.descripcion}</p>
+        <div class="gallery">
+          {project.imagenes.map((imagen) => (
+            <img
+              src={imagen}
+              alt={`Imagen de ${project.nombre}`}
+              loading="lazy"
+            />
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background: #f6f8fa;
+  }
+  .project {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s;
+  }
+
+  .project:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  .project h2 {
+    color: #003f7d;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(239.23px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: 239.23px;
+    object-fit: cover;
+    border-radius: 0;
+    background: #f4f6fa;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      margin-top: 3rem;
+      padding: 0;
+      background: none;
+    }
+  }
+</style>

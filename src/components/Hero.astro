@@ -1,0 +1,144 @@
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Su mejor aliado en infraestructura hidráulica</h1>
+    <p>
+      20 años de experiencia en el mercado de acueducto y alcantarillado,
+      presentes en Antioquia, Córdoba, Risaralda, Quindío, Caldas y Valle del
+      Cauca. Disponible también para otros departamentos por subcontratación.
+    </p>
+
+    <a
+      href="https://wa.me/573002460276?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios"
+      target="_blank"
+      class="more-services-btn desktop-btn"
+      aria-label="Contáctanos por WhatsApp para obtener información sobre nuestros servicios"
+    >
+      Contáctanos por WhatsApp
+    </a>
+  </div>
+
+  <div class="hero-img-container">
+    <img
+      src="/landing4-without-bg.png"
+      alt="Imagen de infraestructura hidráulica"
+      fetchpriority="high"
+    />
+    <a
+      href="https://wa.me/573002460276?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20sus%20servicios"
+      target="_blank"
+      class="more-services-btn mobile-btn"
+      aria-label="Contáctanos por WhatsApp para obtener información sobre nuestros servicios"
+    >
+      Contáctanos por WhatsApp
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    display: flex;
+    height: calc(100vh - 170px);
+  }
+
+  .hero-content,
+  .hero-img-container {
+    flex: 1;
+    height: 100%;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    line-height: 1.5;
+  }
+
+  .desktop-btn {
+    display: inline-block;
+  }
+  .mobile-btn {
+    display: none;
+  }
+
+  .more-services-btn {
+    text-decoration: none;
+    background: var(--accent, #0057b8);
+    padding: 0.7em 2em;
+    color: #fff;
+    border-radius: 0.5em;
+    font-weight: bold;
+    font-size: clamp(1rem, 2.5vw, 1rem);
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    width: fit-content;
+  }
+
+  .more-services-btn:hover {
+    background: var(--accent-dark, #003f7d);
+  }
+
+  .hero-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      height: calc(100dvh - 170px);
+      flex-direction: column;
+    }
+
+    .hero-content {
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.6rem, 5vw, 3rem);
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.5;
+    }
+
+    .hero-img-container img {
+      max-height: 30vh;
+      object-fit: contain;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .desktop-btn {
+      display: none;
+    }
+   .mobile-btn {
+    display: inline-block;
+    width: auto;
+    margin: 1.5rem auto 0 auto;
+    text-align: center;
+  }
+
+    .more-services-btn {
+      width: 100%;
+      border-radius: 0.7em;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      text-align: center;
+      padding: 0.7em 0;
+    }
+  }
+</style>

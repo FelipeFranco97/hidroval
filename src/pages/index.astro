@@ -1,0 +1,29 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Companies from "../components/Companies.astro";
+import Cotizacion from "../components/Cotizacion.astro";
+import FAQ from "../components/FAQ.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import ScrollToTop from "../components/ScrollToTop.astro";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Hero />
+      <Companies />
+      <Cotizacion />
+      <FAQ />
+    </main>
+    <Footer />
+    <ScrollToTop />
+  </body>
+</html>
